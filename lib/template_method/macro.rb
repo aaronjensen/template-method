@@ -13,20 +13,17 @@ module TemplateMethod
     def template_method_macro(method_name, &implementation)
       implementation ||= proc { |*| nil }
 
-      ancestors_without_prepended_modules = ancestors.drop_while do |ancestor|
-        ancestor != self
-      end
+      default_method_name = :"_#{method_name}_default"
 
-      concrete_implementation_exists = ancestors_without_prepended_modules.any? do |ancestor|
-        ancestor.method_defined?(method_name, false) ||
-          ancestor.private_method_defined?(method_name, false)
-      end
+      template_method_module.define_method(default_method_name, &implementation)
 
-      if concrete_implementation_exists
-        return
+      template_method_module.define_method(method_name) do |*args, **kwargs, &block|
+        if defined?(super)
+          super(*args, **kwargs, &block)
+        else
+          public_send(default_method_name, *args, **kwargs, &block)
+        end
       end
-
-      template_method_module.define_method(method_name, &implementation)
     end
     alias :template_method :template_method_macro
 
