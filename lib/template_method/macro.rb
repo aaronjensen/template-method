@@ -1,23 +1,17 @@
 module TemplateMethod
   module Macro
-    def template_method_module
-      @template_method_module ||= include_template_method_module
-    end
-
-    def include_template_method_module
-      mod = Module.new
-      include mod
-      mod
-    end
-
     def template_method_macro(method_name, &implementation)
       implementation ||= proc { |*| nil }
 
+      if method_defined?(method_name, true) || private_method_defined?(method_name, true)
+        return
+      end
+
       default_method_name = :"_#{method_name}_default"
 
-      template_method_module.define_method(default_method_name, &implementation)
+      define_method(default_method_name, &implementation)
 
-      template_method_module.define_method(method_name) do |*args, **kwargs, &block|
+      define_method(method_name) do |*args, **kwargs, &block|
         if defined?(super)
           super(*args, **kwargs, &block)
         else

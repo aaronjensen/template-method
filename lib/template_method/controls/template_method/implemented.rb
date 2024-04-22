@@ -80,17 +80,13 @@ module TemplateMethod
 
                   prepend SomeMethod
 
-                  template_method :some_method do
-                    'some value'
-                  end
+                  template_method :some_method
                 end
               end
 
               module SomeMethod
                 def some_method
-                  return super
-                rescue NoMethodError
-                  return nil
+                  'some value'
                 end
               end
             end
