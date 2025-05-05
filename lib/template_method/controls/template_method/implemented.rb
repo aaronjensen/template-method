@@ -11,7 +11,7 @@ module TemplateMethod
           template_method :some_method
 
           def some_method
-            'some value'
+            "some value"
           end
         end
 
@@ -22,7 +22,7 @@ module TemplateMethod
 
           class Example
             def some_method
-              'some value'
+              "some value"
             end
 
             include ::TemplateMethod
@@ -41,7 +41,7 @@ module TemplateMethod
 
             module SomeModule
               def some_method
-                'some value'
+                "some value"
               end
             end
             include SomeModule
@@ -62,7 +62,7 @@ module TemplateMethod
                   prepend SomeMethod
 
                   template_method :some_method do
-                    'some value'
+                    "some value"
                   end
                 end
               end

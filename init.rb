@@ -1,3 +1,3 @@
-require_relative './load_path'
+require_relative "./load_path"
 
-require 'template_method'
+require "template_method"

@@ -21,7 +21,7 @@ module TemplateMethod
             template_method! :some_method
 
             def some_method
-              'some value'
+              "some value"
             end
           end
         end

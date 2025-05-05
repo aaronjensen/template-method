@@ -39,8 +39,8 @@ module TemplateMethod
 
     def self.macro_methods
       [
-        'template_method',
-        'template_method!'
+        "template_method",
+        "template_method!"
       ]
     end
   end

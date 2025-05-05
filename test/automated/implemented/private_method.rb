@@ -1,4 +1,4 @@
-require_relative '../automated_init'
+require_relative "../automated_init"
 
 context "Template Method" do
   context "Private Method" do
@@ -7,7 +7,7 @@ context "Template Method" do
 
       module SomePrivateMethod
         private def some_private_method
-          'some value'
+          "some value"
         end
       end
       include SomePrivateMethod

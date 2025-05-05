@@ -1,9 +1,9 @@
-require_relative '../automated_init'
+require_relative "../automated_init"
 
 context "Template Method Variant" do
   context "Method Arguments" do
-    some_argument = 'some argument'
-    some_other_argument = 'some other argument'
+    some_argument = "some argument"
+    some_other_argument = "some other argument"
 
     example = Controls::TemplateMethod::Variant.example
 
